@@ -4,6 +4,9 @@ import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
+/*
+读写都应该加锁  不然可能会出现脏读  但是会影响性能
+ */
 
 public class Account {
     String name;
