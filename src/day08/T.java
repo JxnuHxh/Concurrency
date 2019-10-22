@@ -25,7 +25,7 @@ public class T {
         while(running) {
 			/*
 			try {
-				TimeUnit.MILLISECONDS.sleep(10);这里有空可能会更新running的值
+				TimeUnit.MILLISECONDS.sleep(10);这里有空可能会更新running的值 b不过volatile性能更好
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}*/
