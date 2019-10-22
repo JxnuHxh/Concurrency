@@ -6,7 +6,7 @@ synchronized关键字
  */
 public class T {
     private int count = 10;
-    private Object o=new new Object();
+    private Object o=new  Object();
 
     public void m(){
         synchronized(o){//任何对象要执行下面的代码，必须要拿到o的锁
