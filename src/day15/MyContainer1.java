@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
   分析下面这个程序，能完成这个功能吗？
  */
 public class MyContainer1 {
-    List lists = new ArrayList();
+  volatile   List lists = new ArrayList();
 
     public void add(Object o) {
         lists.add(o);

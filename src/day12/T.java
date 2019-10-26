@@ -8,7 +8,6 @@ public class T {
     int count = 0;
 
     synchronized void m1() {
-        //do sth need not sync
         try {
             TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
