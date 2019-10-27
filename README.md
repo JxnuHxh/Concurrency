@@ -54,6 +54,7 @@ volatile变量是一种比synchronized关键字更轻量级的同步机制<br>
 ## 8.什么是线程安全？举例说明<br>
 如果每次运行结果和单线程运行结果一样，而且其他变量结果的值和预期效果也是一样的
 就是线程安全的<br>
+同步容器类<br>
 ArrayList和Vector有什么区别？HashMap和HashTable有什么区别？StringBuilder和<br>
 StringBuffer有什么区别？这些都是Java面试中常见的基础问题。面对这样的问题，回答是：<br>
 ArrayList是非线程安全的，Vector是线程安全的；HashMap是非线程安全的，HashTable<br>
