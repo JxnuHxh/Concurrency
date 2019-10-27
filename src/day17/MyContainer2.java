@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class MyContainer2<T> {
     final private LinkedList<T> lists = new LinkedList<>();
-    final private int MAX = 10; //鏈�澶�10涓厓绱�
+    final private int MAX = 10;
     private int count = 0;
 
     private Lock lock = new ReentrantLock();
@@ -18,7 +18,7 @@ public class MyContainer2<T> {
     public void put(T t) {
         try {
             lock.lock();
-            while(lists.size() == MAX) { //鎯虫兂涓轰粈涔堢敤while鑰屼笉鏄敤if锛�
+            while(lists.size() == MAX) {
                 producer.await();
             }
 

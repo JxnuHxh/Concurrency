@@ -81,7 +81,7 @@ ArrayList是非线程安全的，Vector是线程安全的；HashMap是非线程�
  newSingleThreadExecutor：是一个单线程的Executor，它创建单个工作者线程来执行任务；<br>
  newScheduleThreadPool：创建一个固定长度的线程池，而且以延迟或定时的方式来执行任务。<br>
  ## 13.什么是死锁！ 如何避免死锁？
- <img src="img/02.jpeg">
+ <img src="img/02.jpeg"><br>
  死锁是指两个或两个以上的进程在执行过程中，因争夺资源而造成的一种互相等待的现象，若无外力作用，<br>
  它们都将无法推进下去,会让你的程序挂起无法完成任务<br>
  死锁的四个条件<br>
