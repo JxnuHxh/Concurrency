@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class T {
     /*volatile*/ //int count = 0;
 
-    AtomicInteger count = new AtomicInteger(0);
+    AtomicInteger count = new AtomicInteger(0);//把0付给count
 
     /*synchronized*/ void m() {
         for (int i = 0; i < 10000; i++)

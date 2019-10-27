@@ -2,7 +2,6 @@ package day10;
 
 /**
  * 对比上一个程序，可以用synchronized解决，synchronized可以保证可见性和原子性，volatile只能保证可见性
- * @author mashibing
  */
 
 import java.util.ArrayList;

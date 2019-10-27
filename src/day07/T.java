@@ -5,8 +5,7 @@ package day07;
    比如在一个web app处理过程中，多个servlet线程共同访问同一个资源，这时异常情况处理不合适，
    在一个线程中抛出异常，其他线程就会进入同步代码区，有可能会访问到异常产生时数据。
    因此要非常小心的处理同步业务逻辑中的异常
-
- */
+*/
 
 import java.util.concurrent.TimeUnit;
 

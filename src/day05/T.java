@@ -1,5 +1,7 @@
 package day05;
 
+//同步方法可以和非同步方法同时调用
+
 public class T {
     public synchronized  void m1(){
         System.out.println(Thread.currentThread().getName()+" m1 start");

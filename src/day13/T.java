@@ -22,8 +22,6 @@ public class T {
                     e.printStackTrace();
                 }
                 System.out.println(Thread.currentThread().getName());
-
-
             }
         }
     }
