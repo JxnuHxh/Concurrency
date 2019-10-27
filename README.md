@@ -32,7 +32,8 @@ notify()：唤醒一个处于等待状态的线程，当然在调用此方法的
 notityAll()：唤醒所有处于等待状态的线程，该方法并不是将对象的锁给所有线程，<br>
 而是让它们竞争，只有获得锁的线程才能进入就绪状态；<br>
 sleep来自Thread类，和wait来自Object类<br>
-## 6.synchronized和Lock
+一般采用时间片优先级调度算法<br>
+## 6.synchronized和Lock<br>
 
 synchronized关键字 表示对某个对象加锁 既有可见性 又有原子性<br>
 读写都应该加锁  不然可能会出现脏读  但是会影响性能<br>
@@ -42,43 +43,35 @@ synchronized关键字 表示对某个对象加锁 既有可见性 又有原子�
 主要相同点：Lock能完成Synchronized所实现的所有功能。
 主要不同点：Lock有比Synchronized更精确的线程予以和更好的性能。<br>
 Synchronized会自动释放锁，但是Lock一定要求程序员手工释放，并且必须在finally从句中释放。br>
+## 7.synchronized和volatile<br>
+volatile修饰的是变量 synchronized修饰的是类和方法<br>
+volatile 关键字，使一个变量在多个线程间可见 volatile并不能保证多个线程<br>
+共同修改running变量时所带来的不一致问题，也就是说volatile不能替代synchronized<br>
+volatile是一种稍弱的同步机制 用来确保将变量的更新操作通知到其他线程<br>
+访问volatile变量时不会执行加锁操作，因此也不会使执行线程阻塞，<br>
+volatile变量是一种比synchronized关键字更轻量级的同步机制<br>
+加锁机制既可以确保可见性又可以确保原子性，而volatile变量只能确保可见性<br>
 
-## 7.什么是线程安全？举例说明
+## 8.什么是线程安全？举例说明<br>
 如果每次运行结果和单线程运行结果一样，而且其他变量结果的值和预期效果也是一样的
 就是线程安全的<br>
 ArrayList和Vector有什么区别？HashMap和HashTable有什么区别？StringBuilder和<br>
 StringBuffer有什么区别？这些都是Java面试中常见的基础问题。面对这样的问题，回答是：<br>
 ArrayList是非线程安全的，Vector是线程安全的；HashMap是非线程安全的，HashTable<br>
 是线程安全的；StringBuilder是非线程安全的，StringBuffer是线程安全的<br>
-## 8.并发与并行<br>
+## 9.并发与并行<br>
 
 并发： 同一时间段，多个任务都在执行 (单位时间内不一定同时执行)；<br>
 并行： 单位时间内，多个任务同时执行。<br>
+## 10.如何停止一个线程？<br>
+1、通过修改共享变量来通知目标线程停止运行<br>
+2、通过Thread.interrupt方法中断线程<br>
+3、不提倡的stop()方法<br>
+## 11.出现异常之锁<br>
+ 程序在执行的过程中，如果出现异常，默认情况锁会被释放<br>所以，在并发处理的过程中，
+ 有异常要多加小心，不然可能会发生不一致的情况<br> 比如在一个web app处理过程中，
+ 多个servlet线程共同访问同一个资源，这时异常情况处理不合适，在一个线程中抛出异常，
+ 其他线程就会进入同步代码区，有可能会访问到异常产生时数据。因此要非常小心的处理同步业务逻辑中的异常
 
-
-
-   
-   
-   程序在执行的过程中，如果出现异常，默认情况锁会被释放
-   所以，在并发处理的过程中，有异常要多加小心，不然可能会发生不一致的情况
-   比如在一个web app处理过程中，多个servlet线程共同访问同一个资源，这时异常情况处理不合适，
-   在一个线程中抛出异常，其他线程就会进入同步代码区，有可能会访问到异常产生时数据。
-   因此要非常小心的处理同步业务逻辑中的异常
-   
-   volatile 关键字，使一个变量在多个线程间可见
-          
-   A B线程都用到一个变量，java默认是A线程中保留一份copy，这样如果B线程修改了该变量，则A线程未必知道
-          
-            使用volatile关键字，会让所有线程都会读到变量的修改值
-          
            
-           在下面的代码中，running是存在于堆内存的t对象中
-           当线程t1开始运行的时候，会把running值从内存中读到t1线程的工作区，在运行过程中直接使用这个copy，并不会每次都去
-            读取堆内存，这样，当主线程修改running的值之后，t1线程感知不到，所以不会停止运行
            
-            使用volatile，将会强制所有线程都去堆内存中读取running的值
-           
-            可以阅读这篇文章进行更深入的理解
-            http://www.cnblogs.com/nexiyi/p/java_memory_model_and_thread.html
-           
-           volatile并不能保证多个线程共同修改running变量时所带来的不一致问题，也就是说volatile不能替代synchronized
