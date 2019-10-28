@@ -4,6 +4,9 @@ import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
+//LinkedBlockingQueue是一个阻塞队列，
+// 内部由两个ReentrantLock来实现出入队列的线程安全，
+// 由各自的Condition对象的await和signal来实现等待和唤醒功能
 
 public class T05_LinkedBlockingQueue {
     static BlockingQueue<String> strs = new LinkedBlockingQueue<>();
