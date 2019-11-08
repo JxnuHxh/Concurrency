@@ -5,18 +5,29 @@ import java.util.ArrayList;
 public class Warehouse {
 
     private ArrayList<String> list=new ArrayList<>();
-    public void add(){
+    public synchronized void add()  {
         if(list.size()<20){
         list.add("a");}
         else{
-            return;
+            this.notifyAll();
+            try {
+                this.wait(); //是访问的对象等待
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
         }
     }
-    public synchronized void get(){
+    public synchronized void get()  {
         if(list.size()>0){
             list.remove(0);
         }else{
-            return;
+            this.notifyAll();
+            try {
+                this.wait();
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
         }
     }
 }

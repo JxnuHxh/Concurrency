@@ -11,7 +11,9 @@ public class Producter extends  Thread{
     //一直向仓库放元素
     public void run(){
         while (true){
-            house.add();
+
+                house.add();
+
             System.out.println("生产了一件货物");
             try {
                 Thread.sleep(200);

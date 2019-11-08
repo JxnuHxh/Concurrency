@@ -9,8 +9,10 @@ public class TestMain {
         Producter p=new Producter(house);
         Consumer c1=new Consumer(house);
         Consumer c2=new Consumer(house);
+        p.setPriority(10); //设置优先级 更容易获得CPU的时间片
         p.start();
         c1.start();
         c2.start();
     }
 }
+// wait notify notifyall 方法都是Object类中的方法
