@@ -1,6 +1,7 @@
 # JavaConcurrency
-Java线程基础知识梳理
-
+Java线程基础知识梳理  
+### [12306卖票程序](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/system12306)  
+### [生产者消费者模型](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/producter)  
 ## 1.线程跟进程？<b/><br>
 线程是操作系统能够进行运算调度的最小单位，它是进程的子集，是进程中的实际运作单位<br>
 一个进程可以有很多线程。每个进程都有自己的内存空间，是个实体，可执行代码和唯一进程标识符（PID）。 <br>
