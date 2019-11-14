@@ -1,7 +1,6 @@
 # JavaConcurrency
 Java线程基础知识梳理  
 ###   
-### [生产者消费者模型](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/producter)  
 ## 1.线程跟进程？<b/>    
 
 线程是操作系统能够进行运算调度的最小单位，它是进程的子集，是进程中的实际运作单位    
@@ -36,23 +35,26 @@ start()方法被用来启动新创建的线程，start()内部调用了run()方�
 ![](img/线程状态.png)
 ![](img/02.png)
  
-## 10.如何停止一个线程？<br>
+## 6.如何停止一个线程？<br>
  1、通过修改共享变量来通知目标线程停止运行   
  2、通过Thread.interrupt方法中断线程    
  3、不提倡的stop()方法  
-## 5.线程调度
-[12306卖票程序实例](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/system12306)
+## 7.线程调度
+#### [12306卖票程序实例](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/system12306)   
 wait()：使一个线程处于等待（阻塞）状态，并且释放所持有的对象的锁；<br>
 sleep()：使一个正在运行的线程处于睡眠状态，是一个静态方法，调用此方法要处理InterruptedException异常；<br>
 notify()：唤醒一个处于等待状态的线程，当然在调用此方法的时候，并不能确切的唤醒<br>
-某一个等待状态的线程，而是由JVM确定唤醒哪个线程，而且与优先级无关；<br>
-notityAll()：唤醒所有处于等待状态的线程，该方法并不是将对象的锁给所有线程，<br>
+某一个等待状态的线程，而是由JVM确定唤醒哪个线程，而且与优先级无关   
+#### [生产者消费者模型](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/producter)   
+notityAll()：唤醒所有处于等待状态的线程，该方法并不是将对象的锁给所有线程，
 而是让它们竞争，只有获得锁的线程才能进入就绪状态    
-Join():让调用线程合并当前线程 用于实现同步功能 使它们有先后顺序 [join实例](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/testjoin)   
-sleep()来自Thread类，wait()来自Object类     
+Join():让调用线程合并当前线程 用于实现同步功能 使它们有先后顺序    
+#### [join实例](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/testjoin)      
+sleep()来自Thread类，  wait()来自Object类     
 操作系统一般采用时间片优先级调度算法来调度线程    
-## 6.synchronized和Lock   
-[lock实现的实例](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/day16/ReentrantLock5.java)
+## 8.synchronized和Lock   
+#### [lock实现的实例](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/day16/ReentrantLock5.java)   
+
 synchronized关键字 表示对某个对象加锁 既有可见性 又有原子性    
 读写都应该加锁  不然可能会出现脏读 但是会影响性能 [银行业务实例](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/account/Account.java)    
 同步方法可以和非同步方法同时被调用,一个同步方法可以调用另一个同步方法 [调用实例](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/day06/T.java)   
@@ -62,8 +64,8 @@ synchronized关键字 表示对某个对象加锁 既有可见性 又有原子�
 主要不同点：Lock有比Synchronized更精确的线程予以和更好的性能。 lock可以锁任意地方的代码块   
 Synchronized会自动释放锁，但是Lock一定要求我们手工释放，并且必须在finally从句中释放。   
 
-## 7.synchronized和volatile   
-[volatile的小Demo](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/day08/T.java)  
+## 9.synchronized和volatile   
+#### [volatile的小Demo](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/day08/T.java)  
 volatile修饰的是变量 synchronized修饰的是类和方法
 volatile 关键字，使一个变量在多个线程间可见 但是并不能保证多个线程  
 共同修改running变量时所带来的不一致问题，也就是说volatile不能替代synchronized   
@@ -72,7 +74,7 @@ volatile 关键字，使一个变量在多个线程间可见 但是并不能保�
 volatile变量是一种比synchronized关键字更轻量级的同步机制   
 加锁机制既可以确保可见性又可以确保原子性，而volatile变量只能确保可见性   
 
-## 8.什么是线程安全？举例说明   
+## 10.什么是线程安全？举例说明   
 如果每次运行结果和单线程运行结果一样，而且其他变量结果的值和预期效果也是一样的
 就是线程安全的   
 例同步容器类:    
@@ -105,7 +107,7 @@ c. 不剥夺条件：进程已获得的资源，在末使用完之前，不能�
 d. 循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系<br>
 避免死锁最简单的方法就是阻止循环等待条件，将系统中所有的资源设置标志位、排序，<br>
 规定所有的进程申请资源必须以一定的顺序（升序或降序）做操作来避免死锁<br>
-[哲学家吃饭问题](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/philosopher)
+#### [哲学家吃饭问题](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/philosopher)
 ## 14.活锁与死锁的区别<br>
 活锁和死锁的主要区别是前者进程的状态可以改变但是却不能继续执行。    
 就像两个过于礼貌的人在半路上面对面地相遇：他们彼此都让出对方的路，   
