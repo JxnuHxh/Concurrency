@@ -2,7 +2,7 @@ package day04;
 
 public class T implements Runnable {
     private int count = 10;
-    public /*synchronized */void run(){
+    public /* synchronized */void run(){
         count--;
         System.out.println(Thread.currentThread().getName()+"count="+count);
     }

@@ -34,7 +34,6 @@ public class T {
                 t.m1();
             }
         });
-
         new Thread(()->t.m1(),"t1").start();
         new Thread(()->t.m2(),"t2").start();*/
     }
