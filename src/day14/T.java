@@ -8,8 +8,6 @@ package day14;
  * 因为你的程序和你用到的类库不经意间使用了同一把锁
  * jetty
  */
-
-
 public class T {
 
     String s1 = "Hello";
@@ -20,7 +18,6 @@ public class T {
 
         }
     }
-
     void m2() {
         synchronized(s2) {
 
