@@ -1,8 +1,5 @@
 package day16;
 
-
-import sun.applet.Main;
-
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReentrantLock5 extends Thread {
