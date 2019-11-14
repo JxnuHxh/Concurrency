@@ -16,8 +16,7 @@ public class T_WorkStealingPool {
         service.execute(new R(2000)); //daemon
         service.execute(new R(2000));
 
-        //鐢变簬浜х敓鐨勬槸绮剧伒绾跨▼锛堝畧鎶ょ嚎绋嬨�佸悗鍙扮嚎绋嬶級锛屼富绾跨▼涓嶉樆濉炵殑璇濓紝鐪嬩笉鍒拌緭鍑�
-        System.in.read();
+         System.in.read();
     }
 
     static class R implements Runnable {

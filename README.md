@@ -91,11 +91,11 @@ StringBuilder是非线程安全的，StringBuffer是线程安全的
  是一组同步工作的资源池，与工作队列密切相关的，可以减少线程创建和销毁的开销
  不会犹豫等待创建线程而延迟任务的执行，从而提高了响应性    
  线程的创建要花费昂贵的资源和时间 如果任务来了才创建线程 响应时间会变长   
- newFixedThreadPool：创建一个固定长度的线程池；   
+ newFixedThreadPool：[创建一个固定长度的线程池](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/threadpool/T_ThreadPool.java)；     
  ExecutorService executorService = Executors.newFixedThreadPool(1);   
  newCachedThreadPool：创建一个可缓存的线程池；   
- newSingleThreadExecutor：是一个单线程的Executor，它创建单个工作者线程来执行任务；    
- newScheduleThreadPool：创建一个固定长度的线程池，而且以延迟或定时的方式来执行任务。    
+ newSingleThreadExecutor：[是一个单线程的Executor，它创建单个工作者线程来执行任务](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/threadpool/T_SingleThreadPool.java)       
+ newScheduleThreadPool：[创建一个固定长度的线程池，而且以延迟或定时的方式来执行任务](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/threadpool/T_ScheduledPool.java)。      
  ## 13.什么是死锁！ 如何避免死锁？
  ![死锁](img/02.jpeg)    
  死锁是指两个或两个以上的进程在执行过程中，因争夺资源而造成的一种互相等待的现象，  
