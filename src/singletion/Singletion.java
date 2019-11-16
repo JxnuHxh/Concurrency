@@ -1,4 +1,4 @@
-package day19;
+package singletion;
 
 
 import java.util.Arrays;
@@ -10,7 +10,7 @@ public class Singletion {
         //private修饰的构造函数 保证其他类对象不能直接new出该对象的实例
         System.out.println("single");
     }
-    private static class Inner{
+    private static class Inner{   //静态内部类
         private static Singletion s=new Singletion();
     }
     public static Singletion getSingle(){
