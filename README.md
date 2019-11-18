@@ -44,15 +44,15 @@ start()方法被用来启动新创建的线程，start()内部调用了run()方�
 #### [12306卖票程序实例](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/system12306)   
 wait()：使一个线程处于等待（阻塞）状态，并且释放所持有的对象的锁；<br>
 sleep()：使一个正在运行的线程处于睡眠状态，是一个静态方法，调用此方法要处理InterruptedException异常；<br>
-notify()：唤醒一个处于等待状态的线程，当然在调用此方法的时候，并不能确切的唤醒<br>
-某一个等待状态的线程，而是由JVM确定唤醒哪个线程，而且与优先级无关   
+notify()：唤醒一个处于等待状态的线程，当然在调用此方法的时候，并不能确切的唤醒某一个等待状态的线程，    而是由JVM确定唤醒哪个线程，而且与优先级无关   
 #### [生产者消费者模型](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/producter)   
 notityAll()：唤醒所有处于等待状态的线程，该方法并不是将对象的锁给所有线程，
 而是让它们竞争，只有获得锁的线程才能进入就绪状态    
 Join():让调用线程合并当前线程 用于实现同步功能 使它们有先后顺序    
 #### [join实例](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/testjoin)      
+yield() 暂停当前正在执行的线程 把机会留给优先级更高的线程    
 sleep()来自Thread类，  wait()来自Object类     
-操作系统一般采用时间片优先级调度算法来调度线程    
+操作系统一般采用抢占式时间片优先级调度算法来调度线程    
 ## 8.synchronized和Lock   
 #### [lock实现的实例](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/day16/ReentrantLock5.java)   
 
@@ -98,6 +98,31 @@ StringBuilder是非线程安全的，StringBuffer是线程安全的
  newCachedThreadPool：创建一个可缓存的线程池；   
  newSingleThreadExecutor：[是一个单线程的Executor，它创建单个工作者线程来执行任务](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/threadpool/T_SingleThreadPool.java)       
  newScheduleThreadPool：[创建一个固定长度的线程池，而且以延迟或定时的方式来执行任务](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/threadpool/T_ScheduledPool.java)。      
+ Executor 只有一个方法，execute()来提交一个任务
+
+ExecutorService 提供了管理异步任务的方法，也可以产生一个Future对象来跟踪一个异步任务。
+
+线程池主要的方法如下:
+
+    submit 可以提交一个任务
+    shutdown 可以拒绝接受新任务
+    shutdownNow 可以拒绝新任务并向正在执行的任务发出中断信号
+    invokeXXX 批量执行任务
+
+ThreadPoolExecutor 线程池的具体实现类。线程池的好处在于提高效率，能避免频繁申请/回收线程带来的开销。
+
+它的使用方法复杂一些，构造线程池的可选参数有:   
+
+    corePoolSize : int 工作的Worker的数量。
+    maximumPoolSize : int 线程池中持有的Worker的最大数量  
+    keepAliveTime : long   当超过Workder的数量corePoolSize的  时候，如果没有新的任务提交，超过corePoolSize的Worker的最  长等待时间。超过这个时间之后，一部分Worker将被回收。  
+    unit : TimeUnit keepAliveTime的单位   
+    workQueue : BlockingQueue 缓存任务的队列,   这个队列只缓存提交的Runnable任务。  
+    threadFactory : ThreadFactory 产生线程的“工厂”  
+    handler : RejectedExecutionHandler 当一个任务被提交的时候，如果所有Worker都在工作并且超过了缓存队列的容量的时候。  会交给这个Handler处理。Java   中提供了几种默认的实现，AbortPolicy, CallerRunsPolicy, DiscardOldestPolicy, DiscardPolicy。  
+
+这里的Worker可以理解为一个线程。   
+
  ## 13.什么是死锁！ 如何避免死锁？
  ![死锁](img/02.jpeg)    
  死锁是指两个或两个以上的进程在执行过程中，因争夺资源而造成的一种互相等待的现象，  
