@@ -11,9 +11,9 @@ public class T04_ConcurrentQueue {
         }
         System.out.println(strs);
         System.out.println(strs.size());
-        System.out.println(strs.poll());
+        System.out.println(strs.poll());//返回值并删除
         System.out.println(strs.size());
-        System.out.println(strs.peek());
+        System.out.println(strs.peek());//不删除
         System.out.println(strs.size());
     }
 }

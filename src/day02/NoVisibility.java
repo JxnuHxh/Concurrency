@@ -5,7 +5,7 @@ public class NoVisibility {
     private static int number;
     private static class ReaderThread extends  Thread{
         public void run(){
-            while(!ready) {
+            while(ready==false) {
                 System.out.println("zhixing1");
                 Thread.yield();//暂停当前正在执行的线程对象，并执行其他线程
             }

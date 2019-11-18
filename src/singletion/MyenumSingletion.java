@@ -1,7 +1,9 @@
 package singletion;
 
 public class MyenumSingletion {
+    //枚举式
     public enum singletion{
+
         instance;
     }
 

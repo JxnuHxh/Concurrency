@@ -6,14 +6,14 @@ import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 //写时复制容器 copy on write
-// * 多线程环境下，写时效率低，读时效率高
-// * 适合写少读多的环境
+// 多线程环境下，写时效率低，读时效率高
+// 适合写少读多的环境
 public class T02_CopyOnWriteList {
     public static void main(String[] args) {
-        List<String> lists =
+        List<String> lists =new CopyOnWriteArrayList<>();
                 //new ArrayList<>(); //这个会出并发问题！
                 //new Vector();
-                new CopyOnWriteArrayList<>();
+
         Random r = new Random();
         Thread[] ths = new Thread[100];
 
