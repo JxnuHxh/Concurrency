@@ -43,14 +43,14 @@ start()方法被用来启动新创建的线程，start()内部调用了run()方�
 ## 7.线程调度
 #### [12306卖票程序实例](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/system12306)   
 wait()：使一个线程处于等待（阻塞）状态，并且释放所持有的对象的锁；<br>
-sleep()：使一个正在运行的线程处于睡眠状态，是一个静态方法，调用此方法要处理InterruptedException异常；<br>
+sleep()：使一个正在运行的线程处于睡眠状态，是一个静态方法，调用此方法要处理InterruptedException中断异常 可以直接使用Try-catch跳出任务；<br>
 notify()：唤醒一个处于等待状态的线程，当然在调用此方法的时候，并不能确切的唤醒某一个等待状态的线程，    而是由JVM确定唤醒哪个线程，而且与优先级无关   
 #### [生产者消费者模型](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/producter)   
 notityAll()：唤醒所有处于等待状态的线程，该方法并不是将对象的锁给所有线程，
 而是让它们竞争，只有获得锁的线程才能进入就绪状态    
 Join():让调用线程合并当前线程 用于实现同步功能 使它们有先后顺序    
 #### [join实例](https://github.com/JxnuHxh/JavaConcurrency/tree/master/src/testjoin)      
-yield() 暂停当前正在执行的线程 把机会留给优先级更高的线程    
+yield() 暂停当前正在执行的线程 把机会留给优先级更高的线程 但是不保证一定运行其它线程   
 sleep()来自Thread类，  wait()来自Object类     
 操作系统一般采用抢占式时间片优先级调度算法来调度线程    
 ## 8.synchronized和Lock   
@@ -148,6 +148,21 @@ d. 循环等待条件：若干进程之间形成一种头尾相接的循环等�
 AtomXXX类本身方法都是原子性的，但不能保证多个方法连续调用是原子性的  
 ## 17.阻塞队列  
   
+CountDownLatch 同步多个任务，强制等待其它任务完成。它有两个重要方法countDown,await以及构造时传入的参数SIZE。当一个线程调用await方法的时候会挂起，直到该对象收到SIZE次countDown。一个对象只能使用一次。
+
+CyclicBarrier 也是有一个SIZE参数。当有SIZE个线程调用await的时候，全部线程都会被唤醒。可以理解为所有运动员就位后才能起跑，早就位的运动员只能挂起等待。它可以重复利用。
+
+DelayQueue 一个无界的BlockingQueue，用来放置实现了Delay接口的对象，在队列中的对象只有在到期之后才能被取走。如果没有任何对象到期，就没有头元素。
+
+PriorityBlockingQueue 一种自带优先级的阻塞式队列。
+
+ScheduledExecutor 可以把它想象成一种线程池式的Timer, TimerTask。
+
+Semaphore 互斥锁只允许一个线程访问资源，但是Semaphore允许SIZE个线程同时访问资源。
+
+Exchanger 生产者消费者问题的特殊版。两个线程可以在都‘准备好了’之后交换一个对象的控制权。
+
+ReadWriteLock 读写锁。 读-读不互斥，读-写互斥，写-写互斥
 
 
 
