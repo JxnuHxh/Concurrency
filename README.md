@@ -70,7 +70,8 @@ Synchronized会自动释放锁，但是Lock一定要求我们手工释放，并�
 volatile修饰的是变量 synchronized修饰的是类和方法
 volatile 关键字，使一个变量在多个线程间可见 但是并不能保证多个线程  
 共同修改running变量时所带来的不一致问题，也就是说volatile不能替代synchronized   
-可以说volatile是一种稍弱的同步机制 用来确保将变量的更新操作通知到其他线程  
+可以说volatile是一种稍弱的同步机制 用来确保将变量的更新操作通知到其他线程    
+多写场景，一定会产生线程安全问题。如果是一写多读的并发场景，使用volatile关键字修饰变量则非常合适 
 访问volatile变量时不会执行加锁操作，因此也不会使执行线程阻塞，   
 volatile变量是一种比synchronized关键字更轻量级的同步机制   
 加锁机制既可以确保可见性又可以确保原子性，而volatile变量只能确保可见性   
@@ -164,6 +165,11 @@ Exchanger 生产者消费者问题的特殊版。两个线程可以在都‘准�
 
 ReadWriteLock 读写锁。 读-读不互斥，读-写互斥，写-写互斥
 
+## Fork/Join框架
 
+Fork就是把一个大任务切分成若干个子任务并行执行，Join就是合并这些子任务的执行结果，最后得到这个大任务的结果。
+ForkJoin框架的几个核心类和接口
+ForkJoinTask类，实现Future接口的抽象类，需要实现compute方法（类似Thread的run方法，完成相应的计算逻辑）可以当Thread来理解使用。调用fork方法就加入到任务池中，调用join方法得到任务类的执行结果。
+ForkJoinPool类，执行任务的池子，可以当ThreadPool来理解使用
 
                   
