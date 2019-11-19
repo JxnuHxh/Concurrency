@@ -1,7 +1,15 @@
 # JavaConcurrency
  
 线程和锁在并发编程中的作用，类似于柳钉和工字梁在土木工程的作用  
-要想构建稳健的并发程序，必须正确地使用线程和锁    
+要想构建稳健的并发程序，必须正确地使用线程和锁  
+#### 为什么要做并发？？   
+并发其实式一种解耦合的策略，它帮助我们把做什么(目标) 和什么时候做(时机)分开   
+这样做可以明显改进应用程序的吞吐量(获得更多的CPU调度时间)和结构(程序有多个部分在协同工作)
+#### 并发的客观认识  
+编写并发程序会在代码上增加额外的开销  
+正确的并发式非常复杂的，即使对于非常简单的问题  
+并发中的缺陷因为不易重现也不容易被发现  
+并发往往需要对设计策略从根本上进行修改  
 ## 1.线程跟进程？   
 
 线程是操作系统能够进行运算调度的最小单位，它是进程的子集，是进程中的实际运作单位    
@@ -55,12 +63,13 @@ sleep()来自Thread类，  wait()来自Object类
 操作系统一般采用抢占式时间片优先级调度算法来调度线程    
 ## 8.synchronized和Lock   
 #### [lock实现的实例](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/day16/ReentrantLock5.java)   
-
+tryLock 表示尝试获得锁，如果得不到锁可以等待，回退，或者干别的事 也可以超时放弃  
 synchronized关键字 表示对某个对象加锁 既有可见性 又有原子性    
 读写都应该加锁  不然可能会出现脏读 但是会影响性能 [银行业务实例](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/account/Account.java)    
 同步方法可以和非同步方法同时被调用,一个同步方法可以调用另一个同步方法 [调用实例](https://github.com/JxnuHxh/JavaConcurrency/blob/master/src/day06/T.java)   
 一个线程已经拥有某个对象的锁，再次申请的时候仍然会得到该对象的锁,也就是说synchronized获得的锁是   
-可重入的(线程可以进入任何一个它已经拥有的锁所同步着的代码块)   
+可重入的(线程可以进入任何一个它已经拥有的锁所同步着的代码块) 
+Lock 有两个实现类ReetrantLock 相对灵活 ReentrantReadWriteLock 在读操作多 写操作很少时性能更好    
 主要相同点：Lock能完成Synchronized所实现的所有功能。   
 主要不同点：Lock有比Synchronized更精确的线程予以和更好的性能。 lock可以锁任意地方的代码块   
 Synchronized会自动释放锁，但是Lock一定要求我们手工释放，并且必须在finally从句中释放。   
@@ -145,8 +154,10 @@ d. 循环等待条件：若干进程之间形成一种头尾相接的循环等�
 所以你在自己的代码中也锁定了"Hello",这时候就有可能发生非常诡异的死锁阻塞，  
 因为你的程序和你用到的类库不经意间使用了同一把锁
 ## 16.AtomicInteger   
+利用现代处理器的特性 可以用非阻塞的方式完成原子操作    
 解决同样的问题的更高效的方法，使用AtomXXX类   
 AtomXXX类本身方法都是原子性的，但不能保证多个方法连续调用是原子性的  
+
 ## 17.阻塞队列  
   
 CountDownLatch 同步多个任务，强制等待其它任务完成。它有两个重要方法countDown,await以及构造时传入的参数SIZE。当一个线程调用await方法的时候会挂起，直到该对象收到SIZE次countDown。一个对象只能使用一次。
@@ -171,5 +182,6 @@ Fork就是把一个大任务切分成若干个子任务并行执行，Join就是
 ForkJoin框架的几个核心类和接口
 ForkJoinTask类，实现Future接口的抽象类，需要实现compute方法（类似Thread的run方法，完成相应的计算逻辑）可以当Thread来理解使用。调用fork方法就加入到任务池中，调用join方法得到任务类的执行结果。
 ForkJoinPool类，执行任务的池子，可以当ThreadPool来理解使用
-
-                  
+## CountDownLatch  
+是一种简单的同步模式，它让一个线程可以等待多个线程完成他们的工作从而避免对临界资源  
+并发访问所产生的各类问题

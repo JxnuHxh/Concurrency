@@ -18,7 +18,7 @@ public class CountDownLatchTest {
     public static void main(String[] args) {
         CountDownLatch latch =new CountDownLatch(2);  //创建倒计时门闩 并指定倒计时次数为2
         Worker w1=new Worker("黄小华",getRandomWorkDuration(MIN_WORK_DURATION,MAX_WORK_DURATION));
-        Worker w2=new Worker("黄大华",getRandomWorkDuration(MIN_WORK_DURATION,MAX_WORK_DURATION));
+        Worker w2=new Worker("大华",getRandomWorkDuration(MIN_WORK_DURATION,MAX_WORK_DURATION));
         new Thread(new WorkerTestThread(w1,latch)).start();
         new Thread(new WorkerTestThread(w2,latch)).start();
        try {
