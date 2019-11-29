@@ -12,6 +12,8 @@ import java.util.List;
 public abstract class AbstractServer {
     private ServerSocket checkServer;
     abstract void onData(int id, List<Socket> sockets, String data);
+    abstract void onConnect(int id,List<Socket> sockets);
+    abstract void onDisconnect(int id,List<Socket> sockets);
 
 
 
