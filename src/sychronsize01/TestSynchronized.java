@@ -2,24 +2,23 @@ package sychronsize01;
 
 public class TestSynchronized {
     public  void test1() {
-        synchronized (TestSynchronized.class) {
-            int i = 5;
-            while (i-- > 0) {
-                System.out.println(Thread.currentThread().getName() + " : " + i);
+        synchronized (this) {
+
+            while (true) {
+                System.out.println(Thread.currentThread().getName());
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(3000);
                 } catch (InterruptedException ie) {
                 }
             }
         }
     }
 
-    public   synchronized void test2() {
-        int i = 5;
-        while (i-- > 0) {
-            System.out.println(Thread.currentThread().getName() + " : " + i);
+    public static   synchronized void test2() {
+        while (true) {
+            System.out.println(Thread.currentThread().getName()  );
             try {
-                Thread.sleep(500);
+                Thread.sleep(2000);
             } catch (InterruptedException ie) {
             }
         }
@@ -30,9 +29,8 @@ public class TestSynchronized {
         Thread test1 = new Thread(() ->{
                 myt2.test1();
         }, "test1");
-        TestSynchronized myt1 = new TestSynchronized();
         Thread test2 = new Thread(()-> {
-                myt1.test2();
+                myt2.test2();
         }, "test2");
         test1.start();
         test2.start();
