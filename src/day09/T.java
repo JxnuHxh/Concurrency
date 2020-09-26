@@ -15,6 +15,14 @@ public class T {
     }
 
     public static void main(String[] args) {
+
+        int u=1;
+        Thread t1 =new Thread(()->{
+            for(int i =0 ;i<9;i++){
+                System.out.println(i);
+            }
+        },"线程1");
+        t1.start();
         T t = new T();
 
         List<Thread> threads = new ArrayList<Thread>();
