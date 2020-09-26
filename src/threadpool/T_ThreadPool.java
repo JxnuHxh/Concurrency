@@ -1,5 +1,5 @@
 package threadpool;
-
+//创建一个固定大小线程池
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;

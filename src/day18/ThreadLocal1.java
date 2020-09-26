@@ -24,7 +24,7 @@ public class ThreadLocal1 {
         }).start();
 
     }
-}
-class Person {
-    String name = "zhangsan";
+  static   class Person {
+        String name = "zhangsan";
+    }
 }

@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class T {
 
-    /*synchronized */void m() {
+    synchronized void m() {
         System.out.println("m start");
         try {
             TimeUnit.SECONDS.sleep(1);

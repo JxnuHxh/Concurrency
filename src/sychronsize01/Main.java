@@ -3,8 +3,12 @@ package sychronsize01;
 public class Main {
     public static void main(String[] args) {
         Method demo = new Method();
-        new Thread(() -> demo.m()).start();
+        new Thread(() -> {
+            demo.m();
+        }).start();
         Method demo2 = new Method();
-        new Thread(() -> demo.n()).start();
+        new Thread(() -> {
+            demo.n();
+        }).start();
     }
 }

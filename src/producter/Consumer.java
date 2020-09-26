@@ -1,7 +1,5 @@
 package producter;
 
-import day04.T;
-
 public class Consumer extends Thread {
     private Warehouse house;
     public Consumer(Warehouse house){
